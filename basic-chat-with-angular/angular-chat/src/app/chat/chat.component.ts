@@ -8,9 +8,11 @@ import { HubConnection } from '@aspnet/signalr-client';
 })
 export class ChatComponent implements OnInit {
   private hubConnection: HubConnection;
-  messages: string[];
+  message = '';
+  messages = [];
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
     this.hubConnection = new HubConnection('/chat');
@@ -22,7 +24,8 @@ export class ChatComponent implements OnInit {
     this.hubConnection.start();
   }
 
-  sendMessage(message: string): void {
-    this.hubConnection.invoke('send', message);
+  sendMessage(): void {
+    this.hubConnection.invoke('send', this.message);
+    this.message = '';
   }
 }

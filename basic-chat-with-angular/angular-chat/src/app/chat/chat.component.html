@@ -1,6 +1,6 @@
 <div>
-  <input type="text" id="message" />
-  <input type="button" id="send" value="Senden" (ngClick)="sendMessage()" />
+  <input type="text" id="message" [(ngModel)]="message" />
+  <input type="button" id="send" value="Senden" (click)="sendMessage()" />
   <ul id="messages">
     <li *ngFor="let message of messages">{{message}}</li>
   </ul>
