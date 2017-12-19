@@ -13,4 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-alpha2-final" />
   </ItemGroup>
 
+<PropertyGroup>
+    <DefaultItemExcludes>.git/**;angular-chat/**;$(DefaultItemExcludes)</DefaultItemExcludes>
+  </PropertyGroup>
 </Project>
