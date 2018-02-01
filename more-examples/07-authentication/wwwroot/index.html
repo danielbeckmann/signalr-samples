@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Example</title>
+</head>
+<body>
+    <div>
+        <label for="username">Login as:</label>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="button" id="login" value="Login" />
+    </div>
+    <br />
+    <div>
+        <input type="text" id="user" placeholder="User" />
+        <input type="text" id="messagePrivate" placeholder="Message" />
+        <input type="button" id="sendPrivate" value="Send private message" />
+    </div>
+    <br />
+    <div>
+        <input type="text" id="message" placeholder="Message" />
+        <input type="button" id="send" value="Send" />
+        <ul id="messages"></ul>
+    </div>
+    <script src="scripts/signalr-clientES5-1.0.0-alpha1-final.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var connection = new signalR.HubConnection('/chat');
+
+            connection.on('broadcast', function (message) {
+                var li = document.createElement('li');
+                li.innerHTML = message;
+                document.getElementById('messages').appendChild(li);
+            });
+
+            connection.start()
+                .then(function () {
+                    document.getElementById('send').addEventListener('click', function (event) {
+                        var input = document.getElementById('message');
+
+                        // Call the Send method on the hub.
+                        connection.invoke('send', input.value);
+
+                        input.value = '';
+                    });
+
+                    document.getElementById('sendPrivate').addEventListener('click', function (event) {
+                        var input = document.getElementById('messagePrivate');
+                        var userInput = document.getElementById('user');
+                        connection.invoke('sendToUser', userInput.value, input.value);
+                    });
+                }, function (e) {
+                    console.log("Error: " + e);
+                });
+
+            document.getElementById('login').addEventListener('click', function (event) {
+                var user = document.getElementById('username').value;
+
+                localStorage.setItem('username', user);
+
+                window.location = 'api/login?username=' + user;
+            });
+
+            // Load saved username value
+            var user = localStorage.getItem('username');
+            document.getElementById('username').value = user;
+        });
+    </script>
+</body>
+</html>

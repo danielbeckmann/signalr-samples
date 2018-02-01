@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Example</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="message" />
+        <input type="button" id="send" value="Send" />
+        <ul id="messages"></ul>
+    </div>
+    <script src="scripts/signalr-clientES5-1.0.0-alpha1-final.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var connection = new signalR.HubConnection('/chat');
+
+            connection.on('broadcast', function (message) {
+                var li = document.createElement('li');
+                li.innerHTML = message;
+                document.getElementById('messages').appendChild(li);
+            });
+
+            connection.start()
+                .then(function () {
+                    document.getElementById('send').addEventListener('click', function (event) {
+                        var input = document.getElementById('message');
+
+                        // Call the Send method on the hub.
+                        connection.invoke('send', input.value);
+
+                        input.value = '';
+                    });
+                });
+        });
+    </script>
+</body>
+</html>

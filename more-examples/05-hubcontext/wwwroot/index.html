@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HubContext</title>
+</head>
+<body>
+    <div>
+        <form>
+            <label for="group">Group</label>
+            <input type="text" id="group" />
+            <input type="button" id="btnJoin" value="Join" />
+            <input type="button" id="btnLeave" value="Leave" />
+        </form>
+    </div>
+    <hr />
+    <div>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" />
+
+            <label for="message">Message:</label>
+            <input type="text" id="message" />
+
+            <input type="button" id="btnSend" value="Send" />
+        </form>
+        <ul id="messages"></ul>
+    </div>
+    <script src="scripts/signalr-client-1.0.0-alpha1-final.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var connection = new signalR.HubConnection('/chat');
+
+            connection.on('broadcast', function (name, message) {
+                var li = document.createElement('li');
+                li.innerHTML = '<b>' + name + ':</b> ' + message;
+                document.getElementById('messages').appendChild(li);
+            });
+
+            connection.on('joinedGroup', function (name) {
+                var li = document.createElement('li');
+                li.innerHTML = 'Someone joined the group.';
+                document.getElementById('messages').appendChild(li);
+            });
+
+            connection.on('leftGroup', function (name) {
+                var li = document.createElement('li');
+                li.innerHTML = 'Someone left the group.';
+                document.getElementById('messages').appendChild(li);
+            });
+
+            connection.start()
+                .then(function () {
+                    document.getElementById('btnJoin').addEventListener('click', function (event) {
+                        var groupName = document.getElementById('group').value;
+                        connection.invoke('joinGroup', groupName);
+                    });
+
+                    document.getElementById('btnLeave').addEventListener('click', function (event) {
+                        var groupName = document.getElementById('group').value;
+                        connection.invoke('leaveGroup', groupName);
+                    });
+
+                    document.getElementById('btnSend').addEventListener('click', function (event) {
+                        var inputGroup = document.getElementById('group');
+                        var inputName = document.getElementById('name');
+                        var inputMessage = document.getElementById('message');
+
+                        // Call the Send method on the hub.
+                        connection.invoke('sendToGroup', inputGroup.value, inputName.value, inputMessage.value);
+
+                        inputMessage.value = '';
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
