@@ -10,7 +10,7 @@ namespace signalrdemo
     {
         public Task Send(string name, string message)
         {
-            return Clients.All.InvokeAsync("broadcast", name, message);
+            return Clients.All.SendAsync("broadcast", name, message);
         }
     }
 }

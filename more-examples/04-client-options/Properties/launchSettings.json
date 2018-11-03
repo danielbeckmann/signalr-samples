@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "04-logging": {
+    "04-client-options": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -13,7 +13,9 @@
     <script src="signalr-client-1.0.0-alpha2-final.min.js"></script>
     <!-- <script src="signalr-clientES5-1.0.0-alpha2-final.min.js"></script> -->
     <script>
-        var connection = new signalR.HubConnection('/chat');
+        var connection = new signalR.HubConnectionBuilder()
+                .withUrl('/chat')
+                .build();
         connection.start();
 
         connection.on('broadcast', function (message) {

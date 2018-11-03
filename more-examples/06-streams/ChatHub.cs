@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace signalrdemo
@@ -17,12 +18,14 @@ namespace signalrdemo
 
         public Task Send(string message)
         {
-            return Clients.All.InvokeAsync("broadcast", message);
+            return Clients.All.SendAsync("broadcast", message);
         }
 
-        public IObservable<Status> StreamStatus()
+        public ChannelReader<Status> StreamStatus(int count)
         {
-            return this.statusTicker.StreamStocks();
+            var channel = Channel.CreateUnbounded<Status>();
+             _ = this.statusTicker.StreamStatus(channel.Writer, count);
+            return channel.Reader;
         }
     }
 }

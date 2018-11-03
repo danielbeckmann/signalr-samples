@@ -7,7 +7,7 @@ namespace ChatDemo
     {
        public Task Send(string message)
         {
-            return Clients.All.InvokeAsync("broadcast", message);
+            return Clients.All.SendAsync("broadcast", message);
         }
     }
 }

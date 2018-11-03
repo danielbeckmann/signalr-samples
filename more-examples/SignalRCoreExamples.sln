@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02-multiple-parameters", "0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-groups", "03-groups\03-groups.csproj", "{0A71E29A-3510-47D8-9F54-6100570AC6F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-logging", "04-logging\04-logging.csproj", "{F920D6FC-829A-43FA-9605-340077BB8FD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-client-options", "04-client-options\04-client-options.csproj", "{F920D6FC-829A-43FA-9605-340077BB8FD3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-hubcontext", "05-hubcontext\05-hubcontext.csproj", "{5604758F-33C1-4080-9EF8-157C4BD24BED}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07-binary", "07-binary\07-binary.csproj", "{4A03E1BF-F8C7-4E27-98DC-A6307E26E232}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06-streams", "06-streams\06-streams.csproj", "{2D6BF142-6110-47B5-A5BC-641B62DF5567}"
 EndProject

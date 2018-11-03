@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "_08_authentication": {
+    "07_authentication": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -12,13 +12,13 @@ namespace signalrdemo
     {
         public Task Send(string message)
         {
-            return Clients.All.InvokeAsync("broadcast", message);
+            return Clients.All.SendAsync("broadcast", message);
         }
 
         [Authorize(Roles = "Admin")]
         public Task SendToUser(string user, string message)
         {
-            return Clients.User(user).InvokeAsync("broadcast", message);
+            return Clients.User(user).SendAsync("broadcast", message);
         }
     }
 }

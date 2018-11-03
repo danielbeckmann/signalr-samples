@@ -17,10 +17,10 @@ namespace signalrdemo.Controllers
             this.chatHubContext = chatHubContext;
         }
 
-        [HttpPost]
-        public void Post([FromBody]string value)
+        [HttpGet]
+        public void Get([FromQuery]string message)
         {
-            this.chatHubContext.Clients.All.InvokeAsync("broadcast", "Admin", value);
+            this.chatHubContext.Clients.All.SendAsync("broadcast", "Admin", message);
         }
     }
 }
