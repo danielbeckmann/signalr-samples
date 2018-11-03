@@ -12,7 +12,7 @@ namespace signalrdemo
     {
         public Task Send(string message)
         {
-            return Clients.All.SendAsync("broadcast", message);
+            return Clients.All.SendAsync("broadcast", $"{Context.UserIdentifier} ${message}");
         }
 
         [Authorize(Roles = "Admin")]

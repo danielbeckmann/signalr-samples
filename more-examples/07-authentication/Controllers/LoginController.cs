@@ -19,7 +19,7 @@ namespace _01_basic_example.Controllers
         {
             var userClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username)
+                new Claim(ClaimTypes.NameIdentifier, username)
             };
 
             if (username == "admin")
