@@ -1,0 +1,6 @@
+[{
+  "context": ["/chat"],
+  "target": "http://localhost:65113",
+  "secure": false,
+  "ws": true
+}]
