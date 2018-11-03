@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SignalR Example</title>
+</head>
+<body>
+    <div>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" />
+
+            <label for="message">Message:</label>
+            <input type="text" id="message" />
+
+            <input type="button" id="send" value="Send" />
+        </form>
+        <ul id="messages"></ul>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/@aspnet/signalr@1.0.4/dist/browser/signalr.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/msgpack5@4.2.1/dist/msgpack5.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@aspnet/signalr-protocol-msgpack@1.0.4/dist/browser/signalr-protocol-msgpack.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl('/chat')
+                .withHubProtocol(new signalR.protocols.msgpack.MessagePackHubProtocol())
+                .build();
+
+            connection.on('broadcast', function (name, message) {
+                var li = document.createElement('li');
+                li.innerHTML = '<b>' + name + ':</b> ' + message;
+                document.getElementById('messages').appendChild(li);
+            });
+
+            connection.start()
+                .then(function () {
+                    document.getElementById('send').addEventListener('click', function (event) {
+                        var inputName = document.getElementById('name');
+                        var inputMessage = document.getElementById('message');
+
+                        // Call the Send method on the hub.
+                        connection.invoke('send', inputName.value, inputMessage.value);
+
+                        inputMessage.value = '';
+                    });
+                });
+        });
+    </script>
+</body>
+</html>

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-authentication", "07-aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05-typedhubcontext", "05-typedhubcontext\05-typedhubcontext.csproj", "{2A6BE5D6-D548-46EF-8E6E-AFFB0515CB7F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08-binary", "08-binary\08-binary.csproj", "{93699291-4081-454E-B9DF-289D85B0FD08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{2A6BE5D6-D548-46EF-8E6E-AFFB0515CB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A6BE5D6-D548-46EF-8E6E-AFFB0515CB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A6BE5D6-D548-46EF-8E6E-AFFB0515CB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93699291-4081-454E-B9DF-289D85B0FD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93699291-4081-454E-B9DF-289D85B0FD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93699291-4081-454E-B9DF-289D85B0FD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93699291-4081-454E-B9DF-289D85B0FD08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
